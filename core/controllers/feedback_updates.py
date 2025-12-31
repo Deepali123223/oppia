@@ -163,22 +163,10 @@ class FeedbackThreadHandler(base.BaseHandler[Dict[str, str], Dict[str, str]]):
         suggestion_thread = feedback_services.get_thread(thread_id)
 
         exploration_id = feedback_services.get_exp_id_from_thread_id(thread_id)
-
-        # Skip deprecated suggestions - they should not be displayed in threads
-        # Deprecated or legacy suggestion models may still exist in production data.
-        # We intentionally skip unsupported suggestions instead of raising an
-        # exception so that valid feedback threads can still be returned.
-        if suggestion and suggestion.status == suggestion_models.STATUS_DEPRECATED:
-            suggestion = None
-
-        if suggestion and suggestion.change_cmd is not None:
-            # Get suggestion author settings directly from suggestion.author_id
-            suggestion_author_setting = None
-            if suggestion.author_id:
-                suggestion_author_setting = user_services.get_user_settings(
-                    suggestion.author_id, strict=False
-                )
-
+        if suggestion:
+            suggestion_author_setting = user_services.get_user_settings(
+                author_ids[0], strict=True
+            )
             exploration = exp_fetchers.get_exploration_by_id(exploration_id)
             current_content_html = exploration.states[
                 suggestion.change_cmd.state_name
