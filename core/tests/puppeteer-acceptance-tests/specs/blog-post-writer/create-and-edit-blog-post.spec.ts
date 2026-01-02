@@ -118,7 +118,7 @@ describe('Blog Post Writer', function () {
     // Close the thumbnail image upload modal. If the viewport is mobile, the
     // cancel button isn't visible as the modal is embedded in page itself.
     if (!blogPostWriter.isViewportAtMobileWidth()) {
-      await blogPostWriter.clickOnElementWithText('Cancel');
+      await blogPostWriter.clickOnElement('.e2e-test-cancel-thumbnail-upload');
     }
 
     // Update blog title of less than 5 characters.
@@ -205,9 +205,9 @@ describe('Blog Post Writer', function () {
 
     // Click on publish button.
     await blogPostWriter.selectTag('News');
-    await blogPostWriter.clickOnElementWithText(LABELS.PUBLISH_BUTTON);
+    await blogPostWriter.clickOnElement('.e2e-test-publish-blog-post');
     await blogPostWriter.expectScreenshotToMatch('blogPostPublish', __dirname);
-    await blogPostWriter.clickOnElementWithText(LABELS.CONFIRM_PUBLISH_BUTTON);
+    await blogPostWriter.clickOnElement('.e2e-test-confirm-publish-blog-post');
     await blogPostWriter.navigateToBlogPage();
     await blogPostWriter.expectBlogPostToBePresent('Test Blog Post Title');
   });
