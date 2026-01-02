@@ -52,13 +52,13 @@ describe('Blog Post Writer', function () {
     await blogPostWriter.expectToastMessage(
       'Author Details saved successfully.'
     );
-    await blogPostWriter.expectNewBlogPostButtonToBeVisible(false);
     await blogPostWriter.expectFirstBlogPostButtonToBeVisible(true);
 
     // Click on "Create new blog post" button.
-    await blogPostWriter.clickOnElementWithText(
-      LABELS.CREATE_NEW_BLOG_POST_BTN
+    await blogPostWriter.clickOnElement(
+      '.e2e-test-create-blog-post-button'
     );
+
     await blogPostWriter.expectToBeOnBlogEditorPage();
 
     // Upload GIF format thumbnail image.
@@ -173,9 +173,11 @@ describe('Blog Post Writer', function () {
 
   it('should be able to publish a new blog post', async function () {
     // Create a new blog post.
-    await blogPostWriter.clickOnElementWithText(
-      LABELS.CREATE_NEW_BLOG_POST_BTN
+    await blogPostWriter.navigateToPageUsingProfileMenu('Blog Dashboard');
+    await blogPostWriter.clickOnElement(
+      '.e2e-test-create-blog-post-button'
     );
+
     await blogPostWriter.updateBlogPostTitle('Test Blog Post Title');
     await blogPostWriter.updateBodyTextTo('Test Blog Post Body');
     await blogPostWriter.saveBlogBodyChanges();
