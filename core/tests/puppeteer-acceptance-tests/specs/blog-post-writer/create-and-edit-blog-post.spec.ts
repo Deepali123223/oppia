@@ -27,7 +27,7 @@ import testConstants, {FILEPATHS} from '../../utilities/common/test-constants';
 
 const ROLES = testConstants.Roles;
 const LABELS = {
-  CREATE_NEW_BLOG_POST_BTN: 'CREATE NEW BLOG POST',
+  CREATE_NEW_BLOG_POST_BTN: 'Create New Blog Post',
   PUBLISH_BUTTON: 'PUBLISH',
   CONFIRM_PUBLISH_BUTTON: 'Confirm',
 };
