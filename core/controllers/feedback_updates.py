@@ -23,12 +23,15 @@ from core.domain import (
     exp_fetchers,
     feedback_services,
     subscription_services,
+    suggestion_models,
     suggestion_registry,
     suggestion_services,
     user_services,
 )
 
-from typing import Dict, List, Optional, TypedDict, Union
+from core.storage.suggestion import gae_models as suggestion_models
+
+from typing import Any, Dict, List, Optional, TypedDict, Union, cast
 
 
 class MessageSummaryDict(TypedDict):
